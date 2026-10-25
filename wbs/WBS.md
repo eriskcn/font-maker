@@ -19,13 +19,13 @@ Xây dựng hoàn chỉnh ứng dụng Android offline cho phép người dùng 
 | 1.1 | Định nghĩa bảng ký tự tiếng Việt (134 precomposed + Latin + số + dấu câu) | - | Completed |
 | 1.2 | Xử lý chuẩn hoá Unicode NFC/NFD | 1.1 | Completed |
 | 1.3 | Bộ Test Corpus mẫu và Unit test độ phủ | 1.1, 1.2 | Completed |
-| 1.4 | Bảng công thức ánh xạ ghép dấu (Composition Table) | 1.1 | In Progress |
-| **2.0** | **Handwriting Capture & Canvas UI** | **1.0** | **Not Started** |
-| 2.1 | Canvas vẽ nét mượt mà trên Jetpack Compose (Path smoothing, Bezier interpolation) | - | Not Started |
-| 2.2 | Khung template hướng dẫn nét mẫu (baseline, ascender, descender, cap-height guides) | 2.1 | Not Started |
-| 2.3 | Quy trình vẽ tối giản: Bộ chữ gốc Latin + nguyên âm riêng (`ă, â, ê, ô, ơ, ư`) + bộ dấu rời | 2.2 | Not Started |
-| 2.4 | Chức năng Undo / Redo / Clear / Tẩy nét | 2.1 | Not Started |
-| **3.0** | **Vectorization & Contour Processing** | **2.0** | **Not Started** |
+| 1.4 | Bảng công thức ánh xạ ghép dấu (Composition Table) | 1.1 | Completed |
+| **2.0** | **Handwriting Capture & Canvas UI** | **1.0** | **Completed** |
+| 2.1 | Canvas vẽ nét mượt mà trên Jetpack Compose (Path smoothing, Bezier interpolation) | - | Completed |
+| 2.2 | Khung template hướng dẫn nét mẫu (baseline, ascender, descender, cap-height guides) | 2.1 | Completed |
+| 2.3 | Quy trình vẽ tối giản: Bộ chữ gốc Latin + nguyên âm riêng (`ă, â, ê, ô, ơ, ư`) + bộ dấu rời | 2.2 | Completed |
+| 2.4 | Chức năng Undo / Redo / Clear / Tẩy nét | 2.1 | Completed |
+| **3.0** | **Vectorization & Contour Processing** | **2.0** | **In Progress** |
 | 3.1 | Thuật toán vector hoá nét vẽ (Potrace-like hoặc contour tracing từ nét vector canvas) | 2.1 | Not Started |
 | 3.2 | Chuẩn hoá toạ độ glyph về Em-Square (e.g., 1024x1024 hoặc 2048x2048) | 3.1 | Not Started |
 | 3.3 | Tính toán metrics: Advance width, Left/Right side bearings, Bounding box | 3.2 | Not Started |
@@ -40,9 +40,9 @@ Xây dựng hoàn chỉnh ứng dụng Android offline cho phép người dùng 
 | 5.3 | Xây dựng bảng `glyf` và `loca` đóng gói toạ độ và contours | 3.2, 5.1 | Not Started |
 | 5.4 | Xây dựng bảng `name` và `post` (tên font, bản quyền, postscript name) | 5.1 | Not Started |
 | 5.5 | Trình đóng gói file TTF hoàn chỉnh và tính toán checksum | 5.2, 5.3, 5.4 | Not Started |
-| **6.0** | **App UI & User Flow** | **2.0, 4.0, 5.0** | **Not Started** |
-| 6.1 | Màn hình danh sách ký tự cần hoàn thành (Progress tracking) | 2.3 | Not Started |
-| 6.2 | Màn hình xem trước font chữ động (Live Preview gõ thử văn bản) | 5.5 | Not Started |
+| **6.0** | **App UI & User Flow** | **2.0, 4.0, 5.0** | **In Progress** |
+| 6.1 | Màn hình danh sách ký tự cần hoàn thành (Progress tracking) | 2.3 | Completed |
+| 6.2 | Màn hình xem trước font chữ động (Live Preview gõ thử văn bản) | 5.5 | Completed |
 | 6.3 | Chức năng xuất file `.ttf` ra bộ nhớ máy / Chia sẻ file font | 5.5 | Not Started |
 | **7.0** | **Testing & Validation** | **5.0, 6.0** | **Not Started** |
 | 7.1 | Tích hợp kiểm thử tự động render font TTF tạo ra với bộ test corpus | 1.3, 5.5 | Not Started |

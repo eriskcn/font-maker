@@ -14,6 +14,22 @@ class VietnameseRepertoireTest {
     }
 
     @Test
+    fun testCompositionTableFullCoverage() {
+        // Every single precomposed character must have an explicit composition recipe
+        assertEquals(
+            134,
+            VietnameseCompositionTable.RECIPES.size,
+            "Composition table must cover all 134 precomposed characters"
+        )
+
+        for (ch in VietnameseRepertoire.PRECOMPOSED_VIETNAMESE_LETTERS) {
+            val recipe = VietnameseCompositionTable.RECIPES[ch]
+            assertTrue(recipe != null, "Missing composition recipe for character '$ch' (U+${Integer.toHexString(ch.code)})")
+            assertEquals(ch, recipe?.targetChar)
+        }
+    }
+
+    @Test
     fun testNormalizationEquivalence() {
         // "ế" precomposed vs decomposed
         val nfc = "ế"
