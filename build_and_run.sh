@@ -20,25 +20,44 @@ fi
 
 # Detect SDK for local.properties if missing
 if [ ! -f "local.properties" ]; then
-    SDK_PATH="${ANDROID_HOME:-$HOME/Android/Sdk}"
-    if [ -d "$SDK_PATH" ]; then
-        echo "sdk.dir=$SDK_PATH" > local.properties
-        echo "Generated local.properties with sdk.dir=$SDK_PATH"
+    SDK_CANDIDATES=(
+        "$ANDROID_HOME"
+        "$ANDROID_SDK_ROOT"
+        "$HOME/Android/Sdk"
+        "$HOME/.android/sdk"
+        "/usr/lib/android-sdk"
+        "/opt/android-sdk"
+    )
+    FOUND_SDK=""
+    for candidate in "${SDK_CANDIDATES[@]}"; do
+        if [ -n "$candidate" ] && [ -d "$candidate" ]; then
+            FOUND_SDK="$candidate"
+            break
+        fi
+    done
+
+    if [ -n "$FOUND_SDK" ]; then
+        echo "sdk.dir=$FOUND_SDK" > local.properties
+        echo "Generated local.properties with sdk.dir=$FOUND_SDK"
     else
-        echo "Warning: local.properties not found and cannot auto-detect SDK directory."
+        echo "Error: Android SDK directory not found."
+        echo "Set ANDROID_HOME or create local.properties manually:"
+        echo "  echo 'sdk.dir=/path/to/android-sdk' > local.properties"
+        exit 1
     fi
 fi
 
 echo "=== 2. Checking Gradle Wrapper ==="
-if [ ! -f "./gradlew" ]; then
-    if command -v gradle &> /dev/null; then
-        echo "Generating Gradle wrapper..."
-        gradle wrapper --gradle-version 8.4
-    else
-        echo "Error: ./gradlew not found and 'gradle' command is not installed."
-        exit 1
-    fi
-fi
+mkdir -p gradle/wrapper
+cat << 'EOF' > gradle/wrapper/gradle-wrapper.properties
+distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+distributionUrl=https\://services.gradle.org/distributions/gradle-8.7-bin.zip
+networkTimeout=10000
+validateDistributionUrl=true
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists
+EOF
 chmod +x ./gradlew
 
 echo "=== 3. Building Debug APK ==="
